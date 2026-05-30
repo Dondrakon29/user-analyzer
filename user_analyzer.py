@@ -98,6 +98,7 @@ def show_menu():
     print("1 - City report")
     print("2 - Age report")
     print("3 - Age range report")
+    print("4 - Show all users")
     print("0 - Exit")
     
 def run_app():
@@ -140,9 +141,14 @@ def run_app():
                 range_report = get_age_range_report(users, min_age, max_age)
 
                 print(range_report)
-
+                
             except ValueError:
-                print("Please enter numbers")       
+                print("Please enter numbers") 
+
+        elif choice == "4":
+            text = format_users_text(users)
+
+            print(text)      
 
         else:
             print("Wrong choice")
