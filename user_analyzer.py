@@ -31,6 +31,23 @@ def format_users_text(users):
 
     return ', '.join(info)
 
+def get_user_by_name(users, name):
+
+    for user in users:
+        if user["name"] == name:
+            return user
+        
+    return None
+
+def get_user_report(users, name):
+
+    user = get_user_by_name(users, name)
+
+    if user is None:
+        return "User not found"
+
+    return f'{user["name"]}: {user["age"]}, {user["city"]}'    
+
 def get_city_report(users, city):
 
     city_users = get_users_by_city(users, city)
@@ -99,6 +116,7 @@ def show_menu():
     print("2 - Age report")
     print("3 - Age range report")
     print("4 - Show all users")
+    print("5 - Search user by name")
     print("0 - Exit")
     
 def run_app():
@@ -148,7 +166,15 @@ def run_app():
         elif choice == "4":
             text = format_users_text(users)
 
-            print(text)      
+            print(text)
+
+        elif choice == "5":
+            
+            name = input("Enter name: ")
+
+            user_report = get_user_report(users, name)
+
+            print(user_report)          
 
         else:
             print("Wrong choice")
